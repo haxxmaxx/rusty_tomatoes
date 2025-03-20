@@ -1,0 +1,11 @@
+[package]
+name = "rusty_tomatoes"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5.32", features = ["derive"] }
+clearscreen = "4.0.1"
+colored = "3.0.0"
+ctrlc = "3.4.5"
+rodio = "0.20.1"
