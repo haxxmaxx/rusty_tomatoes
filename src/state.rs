@@ -1,6 +1,7 @@
 mod display;
 mod timer;
 pub mod sound;
+
 use crate::cli_tools::Cli;
 
 pub fn focus(cli: &Cli, current_pomodoro: u16) {

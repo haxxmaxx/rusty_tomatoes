@@ -1,6 +1,8 @@
 use std::process;
 use clap::Parser;
+use crate::SECS_PER_MIN;
 
+const MAX_SECONDS: u16 = 65_535;
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
 pub struct Cli {
@@ -12,11 +14,11 @@ pub struct Cli {
     pub long_rest_time: u16,
     #[arg(short, long, default_value_t = 4)]
     pub number_of_pomodoros: u16,
-    #[arg(short, long, default_value_t = String::from("resources/start.wav"))]
+    #[arg(short, long, default_value_t = String::from("assets/start.wav"))]
     pub start_sound: String,
-    #[arg(short, long, default_value_t = String::from("resources/end.mp3"))]
+    #[arg(short, long, default_value_t = String::from("assets/end.mp3"))]
     pub end_sound: String,
-    #[arg(short, long, default_value_t = String::from("resources/trumpet.mp3"))]
+    #[arg(short, long, default_value_t = String::from("assets/trumpet.mp3"))]
     pub done_sound: String,
     #[arg(short, long, default_value_t = false)]
     pub terminate_when_done: bool,
@@ -30,5 +32,17 @@ pub fn setup_ctrl_c() {
 }
 
 pub fn parse() -> Cli {
-    Cli::parse()
+    let cli = Cli::parse();
+    let max_minutes = MAX_SECONDS / SECS_PER_MIN;
+    if cli.focus_time > max_minutes {
+        panic!("Focus time cannot be greater than {} minutes", max_minutes)
+    }
+    if cli.focus_time > max_minutes {
+        panic!("Rest time cannot be greater than {} minutes", max_minutes)
+    }
+    if cli.focus_time > max_minutes {
+        panic!("Long rest time cannot be greater than {} minutes", max_minutes)
+    }
+
+    cli
 }

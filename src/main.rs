@@ -3,6 +3,8 @@ mod cli_tools;
 
 use state::sound;
 
+pub const SECS_PER_MIN: u16 = 60;
+
 fn main() {
     let cli = cli_tools::parse();
     cli_tools::setup_ctrl_c();

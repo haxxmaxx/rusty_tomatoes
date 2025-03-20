@@ -2,8 +2,7 @@ use std::time::{Instant, Duration};
 use std::thread;
 use std::io;
 use std::io::Write;
-
-const SECS_PER_MIN: u16 = 60;
+use crate::SECS_PER_MIN;
 
 fn format_double_digit(num: u16) -> String {
     if num < 10 {
