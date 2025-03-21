@@ -49,10 +49,10 @@ pub fn parse() -> Cli {
         panic!("Focus time cannot be greater than {} minutes", max_minutes)
     }
     if cli.focus_time > max_minutes {
-        panic!("Rest time cannot be greater than {} minutes", max_minutes)
+        panic!("Break time cannot be greater than {} minutes", max_minutes)
     }
     if cli.focus_time > max_minutes {
-        panic!("Long rest time cannot be greater than {} minutes", max_minutes)
+        panic!("Long breaks time cannot be greater than {} minutes", max_minutes)
     }
 
     cli

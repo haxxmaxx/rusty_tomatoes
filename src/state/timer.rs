@@ -13,8 +13,7 @@ fn format_double_digit(num: u16) -> String {
 }
 
 fn display_time_left(time_left: u16) {
-    let minutes_float = (time_left / SECS_PER_MIN) as f32;
-    let minutes = minutes_float.floor() as u16;
+    let minutes = time_left / SECS_PER_MIN;
     let seconds = time_left % SECS_PER_MIN;
     print!("\rTime left - {}:{}", format_double_digit(minutes), format_double_digit(seconds));
     io::stdout().flush().unwrap();
@@ -23,7 +22,7 @@ fn display_time_left(time_left: u16) {
 pub fn run(time: u16) {
     let one_second = Duration::from_secs(1);
     let mut next_time = Instant::now() + one_second;
-    let time_range = (1..=time*60).rev();
+    let time_range = (1..=time*SECS_PER_MIN).rev();
     
     for time_left in time_range {
         display_time_left(time_left);
